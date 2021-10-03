@@ -25,6 +25,20 @@ function addBookToLibrary() {
   libraryArr.push(newBook);
 }
 
+function displayLibrary() {
+  let bookListDiv = document.querySelector("#bookList");
+  for(let i=0; i<libraryArr.length; i++) {
+    let book = document.createElement("p");
+    if (libraryArr[i].isRead)
+    {
+      book.textContent = libraryArr[i].title + ", " + libraryArr[i].author + ", " + libraryArr[i].numPages + ", has been read.";
+    } else {
+      book.textContent = libraryArr[i].title + ", " + libraryArr[i].author + ", " + libraryArr[i].numPages + ", has not been read.";
+    }
+    bookListDiv.appendChild(book);
+  }
+}
+
 while(isAdd) {
   addBookToLibrary();
   userInput = prompt('Would you like to add another book to the library? Enter yes/no');
@@ -32,5 +46,9 @@ while(isAdd) {
     isAdd = false;
   }
 }
+displayLibrary();
+
+
+
 
 
