@@ -26,17 +26,33 @@ function addBookToLibrary() {
 }
 
 function displayLibrary() {
-  let bookListDiv = document.querySelector("#bookList");
+  let bookContainer = document.querySelector("#bookContainer");
   for(let i=0; i<libraryArr.length; i++) {
-    let book = document.createElement("p");
-    if (libraryArr[i].isRead)
-    {
-      book.textContent = libraryArr[i].title + ", " + libraryArr[i].author + ", " + libraryArr[i].numPages + ", has been read.";
-    } else {
-      book.textContent = libraryArr[i].title + ", " + libraryArr[i].author + ", " + libraryArr[i].numPages + ", has not been read.";
-    }
-    bookListDiv.appendChild(book);
+    let book = createBookCard(libraryArr[i]);
+    bookContainer.appendChild(book);
   }
+}
+
+function createBookCard(book) {
+  card = document.createElement("div");
+  card.classList.add("col-3", "border-radius-3", "bg-gray-200", "p-3", "m-3", "width-5");
+  bookTitle = document.createElement("p");
+  bookTitle.textContent = "title: " + book.title;
+  bookAuthor = document.createElement("p");
+  bookAuthor.textContent = "author: " + book.author;
+  bookPages = document.createElement("p");
+  bookPages.textContent = "length: " + book.numPages + " pages";
+  bookIsRead = document.createElement("p");
+  if (book.isRead) {
+    bookIsRead.textContent = "read: yes";
+  } else {
+    bookIsRead.textContent = "read: no";
+  }
+  card.appendChild(bookTitle);
+  card.appendChild(bookAuthor);
+  card.appendChild(bookPages);
+  card.appendChild(bookIsRead);
+  return card;
 }
 
 while(isAdd) {
