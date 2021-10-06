@@ -8,13 +8,59 @@
   </head>
 
   <body>
-    <main class="container">
+    <main class="container max-width-8 m-auto">
       <div class="row">
         <div class="col-12">
           <h1 class="text-center">Library</h1>
         </div>
       </div>
       <div class="row justify-center" id="bookContainer">
+      </div>
+      <div class="row justify-center">
+        <div class="col-6 text-center">
+          <button class="width-100" id="addBook">add book</button>
+        </div>
+      </div>
+      <div class="row justify-center">
+        <div class="col-6">
+          <form action="" method="">
+            <div>
+              <label for="title">Title:</label>
+            </div>
+            <div>
+              <input type="text" id="title" name="book" class="width-100" required>
+            </div>
+            <br>
+
+            <div>
+              <label for="author">Author:</label>
+            </div>
+            <div>
+              <input type="text" id="author" name="book" class="width-100" required>
+            </div>
+            <br>
+
+            <div>
+              <label for="length">Length (pages):</label>
+            </div>
+            <div>
+              <input type="text" id="length" name="book" class="width-100" required>
+            </div>
+            <br>
+
+            <div class="text-center">
+              <input type="radio" id="read" name="book" value="true" checked>
+              <label for="read">read</label>
+              <input type="radio" id="notreadyet" name="book" value="false">
+              <label for="notreadyet">not read yet</label>
+            </div>
+            <br>
+            
+            <div>
+              <input type="submit" value="submit" class="width-100">
+            </div>
+          </form>
+        </div>
       </div>
     </main>
     
