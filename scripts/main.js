@@ -8,8 +8,15 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead;
 }
 
-function displayLibrary() {
+function refreshLibraryDisplay() {
   let bookContainer = document.querySelector("#bookContainer");
+
+  //remove all books in library
+  while(bookContainer.firstChild){
+    bookContainer.removeChild(bookContainer.firstChild);
+  }
+
+  //add all books in library
   for(let i=0; i<libraryArr.length; i++) {
     let book = createBookCard(libraryArr[i]);
     bookContainer.appendChild(book);
@@ -38,7 +45,9 @@ function createBookCard(book) {
   return card;
 }
 
-document.querySelector('form').addEventListener("submit", event => {
+document.querySelector('form').addEventListener("submit", addBookToLibrary);
+
+function addBookToLibrary(event){
   var data = new FormData(event.target);
   var bookInfo = data.getAll("book");
   var title = bookInfo[0];
@@ -48,10 +57,10 @@ document.querySelector('form').addEventListener("submit", event => {
  
   let book = new Book(title,author,length,hasRead);
   libraryArr.push(book);
-  displayLibrary();
+  refreshLibraryDisplay();
 
   event.preventDefault()
-})
+}
 
 
 
