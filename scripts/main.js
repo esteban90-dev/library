@@ -11,19 +11,19 @@ function Book(title, author, numPages, isRead) {
 function refreshLibraryDisplay() {
   let bookContainer = document.querySelector("#bookContainer");
 
-  //remove all books in library
+  //remove all displayed books
   while(bookContainer.firstChild){
     bookContainer.removeChild(bookContainer.firstChild);
   }
 
-  //add all books in library
+  //display all books in library
   for(let i=0; i<libraryArr.length; i++) {
-    let book = createBookCard(libraryArr[i]);
+    let book = createBookCard(libraryArr[i], i);
     bookContainer.appendChild(book);
   }
 }
 
-function createBookCard(book) {
+function createBookCard(book, bookIndex) {
   card = document.createElement("div");
   card.classList.add("col-3", "border-radius-3", "bg-gray-200", "p-3", "m-3", "width-5");
   bookTitle = document.createElement("p");
@@ -38,10 +38,18 @@ function createBookCard(book) {
   } else {
     bookIsRead.textContent = "read: no";
   }
+  bookRemoveButton = document.createElement("input");
+  bookRemoveButton.setAttribute("type","button");
+  bookRemoveButton.setAttribute("value", "remove");
+  bookRemoveButton.setAttribute("id", bookIndex);
+  bookRemoveButton.addEventListener("click", (event) => {
+    removeBookFromLibrary(parseInt(event.target.getAttribute("id")));
+  });
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
   card.appendChild(bookPages);
   card.appendChild(bookIsRead);
+  card.appendChild(bookRemoveButton);
   return card;
 }
 
@@ -60,6 +68,17 @@ function addBookToLibrary(event){
   refreshLibraryDisplay();
 
   event.preventDefault()
+}
+
+function removeBookFromLibrary(bookIndex){
+  var temp = [];
+  for(let i=0; i<libraryArr.length;i++){
+    if (i !== bookIndex) {
+      temp.push(libraryArr[i]);
+    }
+  }
+  libraryArr = temp;
+  refreshLibraryDisplay();
 }
 
 document.querySelector("#newBook").addEventListener("click",() => {
