@@ -8,59 +8,48 @@
   </head>
 
   <body>
-    <main class="container max-width-8 m-auto">
+    <main class="container m-auto max-width-8">
       <div class="row">
         <div class="col-12">
           <h1 class="text-center">Library</h1>
         </div>
       </div>
-      
-      <div class="row justify-center">
-        <div class="col-6 text-center">
-          <button class="width-100" id="addBook">add book</button>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <input type="button" value="new book" id="newBook">
         </div>
       </div>
-      <div class="row justify-center">
-        <div class="col-6">
-          <form action="" method="">
+
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <form action="" method="" class="justify-around align-center display-none">
             <div>
               <label for="title">Title:</label>
+              <input type="text" id="title" name="book" required>
             </div>
-            <div>
-              <input type="text" id="title" name="book" class="width-100" required>
-            </div>
-            <br>
-
             <div>
               <label for="author">Author:</label>
+              <input type="text" id="author" name="book" required>
             </div>
             <div>
-              <input type="text" id="author" name="book" class="width-100" required>
-            </div>
-            <br>
-
-            <div>
-              <label for="length">Length (pages):</label>
+              <label for="pages">Pages:</label>
+              <input type="text" id="pages" name="book" required>
             </div>
             <div>
-              <input type="text" id="length" name="book" class="width-100" required>
+              <label for="read">Read</label>
+              <input type="checkbox" id="read" name="book" value="true">
             </div>
-            <br>
-
-            <div class="text-center">
-              <input type="radio" id="read" name="book" value="true" checked>
-              <label for="read">read</label>
-              <input type="radio" id="notreadyet" name="book" value="false">
-              <label for="notreadyet">not read yet</label>
-            </div>
-            <br>
-            
             <div>
-              <input type="submit" value="submit" class="width-100">
+              <input type="submit" value="add book">
             </div>
           </form>
         </div>
       </div>
+      
+      
+      
       <div class="row justify-center" id="bookContainer">
       </div>
     </main>

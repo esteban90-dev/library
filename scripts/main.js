@@ -62,6 +62,16 @@ function addBookToLibrary(event){
   event.preventDefault()
 }
 
+document.querySelector("#newBook").addEventListener("click",() => {
+  if(document.querySelector("form").classList.contains("display-none")) {
+    document.querySelector("form").classList.remove("display-none");
+    document.querySelector("form").classList.add("display-flex");
+  } else {
+    document.querySelector("form").classList.remove("display-flex");
+    document.querySelector("form").classList.add("display-none");
+  }
+})
+
 
 
 
