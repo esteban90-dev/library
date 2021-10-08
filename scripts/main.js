@@ -34,18 +34,28 @@ function refreshLibraryDisplay() {
 function createBookCard(book, bookIndex) {
   card = document.createElement("div");
   card.classList.add("col-3", "border-radius-3", "bg-gray-200", "p-3", "m-3", "width-5");
+
   bookTitle = document.createElement("p");
   bookTitle.textContent = "title: " + book.title;
+
   bookAuthor = document.createElement("p");
   bookAuthor.textContent = "author: " + book.author;
+
   bookPages = document.createElement("p");
   bookPages.textContent = "length: " + book.numPages + " pages";
-  bookIsRead = document.createElement("span");
+
+  bookIsReadLabel = document.createElement("label");
+  bookIsReadLabel.textContent = "Read:";
+
+  bookIsReadCheckBox = document.createElement("input");
+  bookIsReadCheckBox.setAttribute("type","checkbox");
+  bookIsReadCheckBox.setAttribute("id",bookIndex);
   if (book.isRead) {
-    bookIsRead.textContent = "read: yes";
+    bookIsReadCheckBox.checked = true;
   } else {
-    bookIsRead.textContent = "read: no";
+    bookIsReadCheckBox.checked = false;
   }
+  bookIsReadCheckBox.addEventListener("change",changeReadStatus);
 
   bookRemoveButton = document.createElement("input");
   bookRemoveButton.setAttribute("type","button");
@@ -55,21 +65,19 @@ function createBookCard(book, bookIndex) {
     removeBookFromLibrary(parseInt(event.target.getAttribute("id")));
   });
 
-  changeReadStatusButton = document.createElement("input");
-  changeReadStatusButton.setAttribute("type", "button");
-  changeReadStatusButton.setAttribute("id", bookIndex);
-  changeReadStatusButton.setAttribute("value", "change");
-  changeReadStatusButton.addEventListener("click", changeReadStatus);
+  readStatusDiv = document.createElement("div");
+  readStatusDiv.appendChild(bookIsReadLabel);
+  readStatusDiv.appendChild(bookIsReadCheckBox);
 
-  div = document.createElement("div");
-  div.appendChild(bookIsRead);
-  div.appendChild(changeReadStatusButton);
+  removeDiv = document.createElement("div");
+  removeDiv.classList.add("mt-4","display-flex","justify-center");
+  removeDiv.appendChild(bookRemoveButton);
 
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
   card.appendChild(bookPages);
-  card.appendChild(div);
-  card.appendChild(bookRemoveButton);
+  card.appendChild(readStatusDiv);
+  card.appendChild(removeDiv);
   return card;
 }
 
@@ -120,6 +128,7 @@ document.querySelector("#newBook").addEventListener("click",(event) => {
 function changeReadStatus(event){
   book = libraryArr[(event.target.getAttribute("id"))];
   book.toggleRead();
+  console.log(libraryArr[0]);
   refreshLibraryDisplay();
 }
 
