@@ -15,33 +15,35 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12 text-center">
-          <input type="button" value="new book" id="newBook">
+      <div class="row justify-center">
+        <div class="col-6 text-center">
+          <input type="button" value="+ new book" id="newBook">
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12 text-center">
-          <form action="" method="" class="justify-around align-center display-none">
-            <div>
-              <label for="title">Title:</label>
-              <input type="text" id="title" name="book" required>
-            </div>
-            <div>
-              <label for="author">Author:</label>
-              <input type="text" id="author" name="book" required>
-            </div>
-            <div>
-              <label for="pages">Pages:</label>
-              <input type="text" id="pages" name="book" required>
-            </div>
-            <div>
-              <label for="read">Read</label>
-              <input type="checkbox" id="read" name="book" value="true">
-            </div>
-            <div>
-              <input type="submit" value="add book">
+      <div class="row justify-center">
+        <div class="col-6 text-center">
+          <form action="" method="" class="display-none">
+            <div class="row">
+              <div class="col-12 mb-3">
+                <label for="title" class="display-block text-left">Title:</label>
+                <input type="text" id="title" name="book" class="width-100" required>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="author" class="display-block text-left">Author:</label>
+                <input type="text" id="author" name="book" class="width-100" required>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="pages" class="display-block text-left">Pages:</label>
+                <input type="number" min="0" max="10000" id="pages" name="book" class="width-100" required>
+              </div>
+              <div class="col-12 display-flex justify-start mb-3">
+                <label for="read">Read</label>
+                <input type="checkbox" id="read" name="book" value="true">
+              </div>
+              <div class="col-12 mb-3">
+                <input type="submit" value="add book" class="width-100">
+              </div>
             </div>
           </form>
         </div>

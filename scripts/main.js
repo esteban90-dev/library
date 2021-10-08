@@ -101,12 +101,18 @@ function removeBookFromLibrary(bookIndex){
   refreshLibraryDisplay();
 }
 
-document.querySelector("#newBook").addEventListener("click",() => {
+document.querySelector("#newBook").addEventListener("click",(event) => {
+  if(event.target.getAttribute("value") === "+ new book"){
+    event.target.setAttribute("value", "- new book");
+  } else {
+    event.target.setAttribute("value", "+ new book");
+  }
+
   if(document.querySelector("form").classList.contains("display-none")) {
     document.querySelector("form").classList.remove("display-none");
-    document.querySelector("form").classList.add("display-flex");
+    document.querySelector("form").classList.add("display-block");
   } else {
-    document.querySelector("form").classList.remove("display-flex");
+    document.querySelector("form").classList.remove("display-block");
     document.querySelector("form").classList.add("display-none");
   }
 })
