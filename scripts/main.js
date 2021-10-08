@@ -8,6 +8,14 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead;
 }
 
+Book.prototype.toggleRead = function(){
+  if (this.isRead){
+    this.isRead = false;
+  } else {
+    this.isRead = true;
+  }
+}
+
 function refreshLibraryDisplay() {
   let bookContainer = document.querySelector("#bookContainer");
 
@@ -32,12 +40,13 @@ function createBookCard(book, bookIndex) {
   bookAuthor.textContent = "author: " + book.author;
   bookPages = document.createElement("p");
   bookPages.textContent = "length: " + book.numPages + " pages";
-  bookIsRead = document.createElement("p");
+  bookIsRead = document.createElement("span");
   if (book.isRead) {
     bookIsRead.textContent = "read: yes";
   } else {
     bookIsRead.textContent = "read: no";
   }
+
   bookRemoveButton = document.createElement("input");
   bookRemoveButton.setAttribute("type","button");
   bookRemoveButton.setAttribute("value", "remove");
@@ -45,10 +54,21 @@ function createBookCard(book, bookIndex) {
   bookRemoveButton.addEventListener("click", (event) => {
     removeBookFromLibrary(parseInt(event.target.getAttribute("id")));
   });
+
+  changeReadStatusButton = document.createElement("input");
+  changeReadStatusButton.setAttribute("type", "button");
+  changeReadStatusButton.setAttribute("id", bookIndex);
+  changeReadStatusButton.setAttribute("value", "change");
+  changeReadStatusButton.addEventListener("click", changeReadStatus);
+
+  div = document.createElement("div");
+  div.appendChild(bookIsRead);
+  div.appendChild(changeReadStatusButton);
+
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
   card.appendChild(bookPages);
-  card.appendChild(bookIsRead);
+  card.appendChild(div);
   card.appendChild(bookRemoveButton);
   return card;
 }
@@ -90,6 +110,12 @@ document.querySelector("#newBook").addEventListener("click",() => {
     document.querySelector("form").classList.add("display-none");
   }
 })
+
+function changeReadStatus(event){
+  book = libraryArr[(event.target.getAttribute("id"))];
+  book.toggleRead();
+  refreshLibraryDisplay();
+}
 
 
 
