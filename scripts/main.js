@@ -1,9 +1,27 @@
 var libraryArr = [];
 
+class Book{
+  constructor(title, author, numPages, isRead){
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;
+    this.isRead = isRead;
+  }
+
+  toggleRead(){
+    if (this.isRead){
+      this.isRead = false;
+    } else {
+      this.isRead = true;
+    }
+  }
+}
+
 retrieveLibrary();
 
 let addBookButton = document.querySelector("#addBook");
 
+/*
 function Book(title, author, numPages, isRead) {
   this.title = title;
   this.author = author;
@@ -18,6 +36,7 @@ Book.prototype.toggleRead = function(){
     this.isRead = true;
   }
 }
+*/
 
 function refreshLibraryDisplay() {
   let bookContainer = document.querySelector("#bookContainer");
@@ -173,6 +192,8 @@ function storeLibrary(){
 function retrieveLibrary(){
   if (storageAvailable('localStorage')) {
     let temp = JSON.parse(window.localStorage.getItem('libraryArr'));
+    //instantiate trash book object so we can access the Book class's prototype in the next steps
+    trashBook = new Book('n/a','n/a',0,false);
     if (temp) {
       for(let i=0;i<temp.length;i++){
         //replace prototype lost when converting objects to JSON
